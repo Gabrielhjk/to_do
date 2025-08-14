@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const controllers = require('../controllers')
 const validate = require('../utils/validation_user')
-const { user, task } = require('../models')
+const { user, task } = require('../schemas')
 
 router.get('/', controllers)
 // router.post('/register', validate(user), controllers)

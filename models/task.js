@@ -1,8 +1,10 @@
-// validacao dos dados com hapi/joi 
-const Joi = require('@hapi/joi')
+const { DataTypes } = require('sequelize')
+const db = require('../db')
 
-export const Task = Joi.object({
-    title: Joi.string().min(1).max(200).required(),
-    description: Joi.string().min(1).max(500).required()
+export const Task = db.define('Task', {
+    title: {
+        type: DataTypes.STRING(200),
+        require: true,
+        allowNull: false
+    }
 })
-

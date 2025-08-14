@@ -1,9 +1,20 @@
-// validacao dos dados com hapi/joi 
-const Joi = require('@hapi/joi')
+const db = require('../db')
+const { DataTypes } = require('sequelize')
 
-export const User = Joi.object({
-    name: Joi.string().max(100).required(),
-    email: Joi.string().email().required(),
-    password: Joi.string().min(8).max(20).required(),
-    confirm_password: Joi.ref('password')
+export const User = db.define('User', {
+    name: {
+        type: DataTypes.STRING(100),
+        require: true,
+        allowNull: false
+    },
+    email: {
+        type: DataTypes.STRING,
+        require: true,
+        allowNull: false
+    },
+    password: {
+        type: DataTypes.STRING(20),
+        require: true,
+        allowNull: false
+    }
 })
