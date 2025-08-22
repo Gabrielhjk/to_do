@@ -1,4 +1,4 @@
-export default (Schema) => {
+const validationUser = (Schema) => {
     return (req, res, next) => {
 
         // validacao dos dados dos usuarios
@@ -22,3 +22,5 @@ export default (Schema) => {
         }
     }
 }
+
+module.exports = validationUser

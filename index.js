@@ -8,7 +8,7 @@ const app = express()
 
 // pegando as rotas 
 const routerUser = require('./routes/routerUser')
-const routerTask = require('./routes/routerTask')
+// const routerTask = require('./routes/routerTask')
 
 // pegando corpo da requisicao 
 app.use(express.urlencoded({
@@ -32,7 +32,7 @@ app.use(session({
 })) 
 
 app.use('/', routerUser)
-app.use('/tasks', routerTask)
+// app.use('/tasks', routerTask)
 
 
 db.sync().then(  

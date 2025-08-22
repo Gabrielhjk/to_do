@@ -1,4 +1,4 @@
-export default (Schema) => {
+const validationTask = (Schema) => {
     return (req, res, next) => {
 
         // validacao dos dados das tasks 
@@ -22,3 +22,5 @@ export default (Schema) => {
         }
     } 
 }
+
+module.exports = validationTask
