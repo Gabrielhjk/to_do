@@ -6,6 +6,10 @@ const port = process.env.PORT
 
 const app = express()
 
+// pegando as rotas 
+const routerUser = require('./routes/routerUser')
+const routerTask = require('./routes/routerTask')
+
 // pegando corpo da requisicao 
 app.use(express.urlencoded({
     extended: true
@@ -27,6 +31,8 @@ app.use(session({
     }
 })) 
 
+app.use('/', routerUser)
+app.use('/tasks', routerTask)
 
 
 db.sync().then(  
