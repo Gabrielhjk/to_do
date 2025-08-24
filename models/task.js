@@ -3,7 +3,7 @@ const db = require('../db/db')
 
 const User = require('./User')
 
-export const Task = db.define('Task', {
+const Task = db.define('Task', {
     title: {
         type: DataTypes.STRING(200),
         require: true,
@@ -13,3 +13,5 @@ export const Task = db.define('Task', {
 
 Task.belongsTo(User)
 User.hasMany(Task)
+
+module.exports = Task
