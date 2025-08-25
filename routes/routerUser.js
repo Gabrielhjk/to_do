@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const controllers = require('../controllers/users')
-const validate = require('../utils/validation_user')
+const validate = require('../middlewares/validation_user')
 const { userSchema } = require('../schemas/userSchema')
 
 router.get('/register', controllers.getRegister)
