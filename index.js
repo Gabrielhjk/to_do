@@ -46,7 +46,7 @@ app.use('/tasks', routerTask)
 
 db.sync().then(  
     app.listen(() => {
-    console.log('The server is running on port ' + port)
+    console.log('The server is running on http://localhost:5000')
 })).catch((err) => console.log(err))
 
 

@@ -1,4 +1,4 @@
-const validationUser = (Schema) => {
+function validationUser(Schema) {
     return (req, res, next) => {
 
         // validacao dos dados dos usuarios

@@ -1,4 +1,4 @@
-const validationTask = (Schema) => {
+function validationTask(Schema) {
     return (req, res, next) => {
 
         // validacao dos dados das tasks 

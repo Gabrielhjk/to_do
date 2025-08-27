@@ -1,6 +1,5 @@
 const User = require('../models/User')
 const bcrpyt = require('bcryptjs')
-const session = require('express-session')
 
 module.exports = class UsersController {
     static getRegister(req, res) {
