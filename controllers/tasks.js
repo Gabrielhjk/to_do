@@ -1,4 +1,5 @@
 const Task = require('../models/Task')
+const User = require('../models/User')
 
 module.exports = class tasksControllers {
     static getHome(req, res) {
@@ -6,11 +7,34 @@ module.exports = class tasksControllers {
     }
 
     static async getAllTasks(req, res) {
-        // retorna todas as tasks 
+        const userId = req.session.userId 
+        let emptyTasks = false
+
+        // busca o usuario pelo id 
+        const user = User.findOne({ where: {id: userId}, plain: true, include: Task })
+
+        // verifica se o usuario existe 
+        if (!user) {
+            console.log('User not exists')
+            return
+        }
+
+        // itera sobre sobre todas as tasks 
+        const tasks = await user.Tasks.map((task) => task.dataValues)
+
+        // verifica se nao tem task adicionada 
+        if (tasks.length === 0 ) {
+            emptyTasks = true
+        }
     }
 
     static async getTaskId(req, res) {
-        // retorna task por id 
+        const taskId = req.params.id
+        const userId = req.session.useId 
+
+        const task = await Task.findOne({ where: {id: taskId, userId: userId }})
+
+        // retornar tela da tarefa com o id especifico 
     }
 
     static getCreateTask(req, res) {
@@ -18,7 +42,17 @@ module.exports = class tasksControllers {
     }    
 
     static async postTask(req, res) {
-        // criacao de tasks 
+        const task = {
+            title: req.body.title,
+            description: req.body.description,
+            userId: req.session.userId
+        }
+
+        if (!task.title) {
+            console.log('The word have more than one letter')
+        }
+
+        await Task.create(task) 
     }
 
     static getUpdateTask(req, res) {
@@ -30,7 +64,17 @@ module.exports = class tasksControllers {
     }
 
     static async deleteTask(req, res) {
-        // deleta a task 
+        const userId = req.session.userId
+        const taskId = req.params.id
+
+        const task = Task.findOne({ where: {id: taskId, userId: userId}})
+
+        if (!task) {
+            console.log('Task not exists')
+            return
+        }
+
+        await Task.destroy(task)
     }
 }
 
