@@ -1,10 +1,12 @@
 require('dotenv').config()
 const express = require('express')
 const session = require('express-session')
+const swaggerUi = require('swagger-ui-express')
+const swaggerDocument = require('./swagger.json')
 const db = require('./db/db')
 const { RedisStore } = require('connect-redis')
 const { createClient } = require('redis')
-const port = process.env.PORT
+const port = process.env.PORT 
 
 const app = express()
 
@@ -40,13 +42,17 @@ app.use(session({
     }
 })) 
 
-app.use('/', routerUser)
+// documentacao swagger 
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+
+app.use('/users', routerUser)
 app.use('/tasks', routerTask)
 
 
-db.sync().then(  
-    app.listen(() => {
-    console.log('The server is running on http://localhost:5000')
-})).catch((err) => console.log(err))
+
+db.sync().then(() => {
+    app.listen(port),
+    console.log(`The server is running on http://localhost:${port}/api-docs`)
+}).catch((err) => console.log(err))
 
 

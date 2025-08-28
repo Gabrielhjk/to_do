@@ -1,0 +1,188 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "User API",
+    "description": "API para registro e login de usuários",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/users/register": {
+      "get": {
+        "summary": "Página de registro",
+        "description": "Renderiza a tela de registro de usuário",
+        "responses": {
+          "200": {
+            "description": "Tela de registro retornada com sucesso"
+          }
+        }
+      },
+      "post": {
+        "summary": "Registrar um usuário",
+        "description": "Cria um novo usuário no sistema",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Francisco"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "francisco@email.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "12345678"
+                  },
+                  "confirm_password": {
+                    "type": "string",
+                    "example": "12345678"
+                  }
+                },
+                "required": ["name", "email", "password", "confirm_password"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Usuário criado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": { "type": "integer", "example": 1 },
+                    "name": { "type": "string", "example": "Francisco" },
+                    "email": { "type": "string", "example": "francisco@email.com" }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erro de validação",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "passwordMismatch": {
+                    "summary": "Senhas diferentes",
+                    "value": { "error": "Password invalid" }
+                  },
+                  "missingFields": {
+                    "summary": "Campos obrigatórios ausentes",
+                    "value": { "error": "All fields are required" }
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Usuário já existe",
+            "content": {
+              "application/json": {
+                "example": { "error": "User already exists" }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor",
+            "content": {
+              "application/json": {
+                "example": { "error": "Internal server error" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/login": {
+      "get": {
+        "summary": "Página de login",
+        "description": "Renderiza a tela de login do usuário",
+        "responses": {
+          "200": {
+            "description": "Tela de login retornada com sucesso"
+          }
+        }
+      },
+      "post": {
+        "summary": "Login de usuário",
+        "description": "Autentica um usuário existente e cria uma sessão",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "example": "francisco@email.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "12345678"
+                  }
+                },
+                "required": ["email", "password"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Login realizado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": { "type": "string", "example": "Login successful" },
+                    "userId": { "type": "integer", "example": 1 }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Campos obrigatórios ausentes",
+            "content": {
+              "application/json": {
+                "example": { "error": "Email and password are required" }
+              }
+            }
+          },
+          "401": {
+            "description": "Credenciais inválidas",
+            "content": {
+              "application/json": {
+                "example": { "error": "Invalid password" }
+              }
+            }
+          },
+          "404": {
+            "description": "Usuário não encontrado",
+            "content": {
+              "application/json": {
+                "example": { "error": "User not exists" }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor",
+            "content": {
+              "application/json": {
+                "example": { "error": "Internal server error" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

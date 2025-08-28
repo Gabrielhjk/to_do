@@ -28,7 +28,7 @@ module.exports = class UsersController {
         // gera valores aleatorios com o cost factor com o valor de 10 
         const salt = bcrpyt.genSaltSync(10)
         // pega a senha enviada pelo o usuario e faz um hash 
-        const hashedPassword = bcrypt.hashSync(password, salt)
+        const hashedPassword = bcrpyt.hashSync(password, salt)
         
         // corpo que vai ser enviado para o banco 
         const data = {
