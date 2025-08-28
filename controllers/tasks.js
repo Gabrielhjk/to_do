@@ -32,6 +32,7 @@ module.exports = class tasksControllers {
         const taskId = req.params.id
         const userId = req.session.useId 
 
+        // busca o id especifico da task associado ao id do user 
         const task = await Task.findOne({ where: {id: taskId, userId: userId }})
 
         // retornar tela da tarefa com o id especifico 
@@ -48,10 +49,13 @@ module.exports = class tasksControllers {
             userId: req.session.userId
         }
 
+        // verifica se o title tem menos de 1 letra 
         if (!task.title) {
-            console.log('The word have more than one letter')
+            console.log('The title have more than one letter')
+            return
         }
 
+        // cria a tarefa 
         await Task.create(task) 
     }
 
@@ -60,20 +64,47 @@ module.exports = class tasksControllers {
     }
 
     static async updateTask(req, res){
-        // atualizar task 
+        const taskId = req.params.id
+        const userId = req.session.userId
+        const { title, description } = req.body
+
+        // checa se a task pertence ao user 
+        const checkTask = await Task.findOne({ where: {id: taskId, userId: userId}})
+
+        // caso nao pertenca 
+        if (!checkTask) {
+            console.log('Not exists')
+            return
+        }
+
+        // verifica se o title tem menos de 1 letra 
+        if (!title) {
+            console.log('The title have more than one letter')
+            return
+        }
+
+        try {
+            await Task.update({ title, description }, { where: {id: taskId, userId: userId}})
+            console.log('Successfully updated')
+        } catch (err) {
+            console.log(err)
+        }
     }
 
     static async deleteTask(req, res) {
         const userId = req.session.userId
         const taskId = req.params.id
 
+        // encontra task associada ao id do user  
         const task = Task.findOne({ where: {id: taskId, userId: userId}})
 
+        // caso nao exista 
         if (!task) {
             console.log('Task not exists')
             return
         }
 
+        // exclui a task 
         await Task.destroy(task)
     }
 }

@@ -10,7 +10,7 @@ router.get('/allTasks', auth, controllers.getAllTasks)
 router.get('/:id', auth, controllers.getTaskId)
 router.get('/create', auth, controllers.getCreateTask)
 router.post('/create', auth, validate(taskSchema), controllers.postTask)
-router.get('update/:id', auth, controllers.getUpdateTask)
+router.get('/update/:id', auth, controllers.getUpdateTask)
 router.put('/update/:id', auth, validate(taskSchema), controllers.updateTask)
 router.delete('/remove/:id', auth, controllers.deleteTask)
 
