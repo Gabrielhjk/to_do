@@ -17,7 +17,7 @@ module.exports = class UsersController {
         }
         
         // busca o email do usuario no banco
-        const checkUserExists = await User.findOne({where: {email: email}}) 
+        const checkUserExists = await findOne({where: {email: email}}) 
         
         // verifica se ja existe algum usuario com o email cadastrado 
         if (checkUserExists) {
@@ -55,7 +55,7 @@ module.exports = class UsersController {
         const { email, password } = req.body
 
         // busca o email do usuario no banco
-        const checkUserExists = await User.findOne({where: {email: email}})
+        const checkUserExists = await findOne({where: {email: email}})
 
         // verifica se ja existe algum usuario com o email cadastrado 
         if (!checkUserExists) {

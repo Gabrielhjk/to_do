@@ -5,9 +5,17 @@
     "description": "API para registro e login de usuários",
     "version": "1.0.0"
   },
+  "tags": [
+    {
+        "name": "Users"
+    }
+  ],
   "paths": {
     "/users/register": {
       "get": {
+        "tags": [
+            "Users"
+        ],
         "summary": "Página de registro",
         "description": "Renderiza a tela de registro de usuário",
         "responses": {
@@ -17,6 +25,9 @@
         }
       },
       "post": {
+        "tags": [
+            "Users"
+        ],
         "summary": "Registrar um usuário",
         "description": "Cria um novo usuário no sistema",
         "requestBody": {
@@ -102,6 +113,9 @@
     },
     "/users/login": {
       "get": {
+        "tags": [
+            "Users"
+        ],
         "summary": "Página de login",
         "description": "Renderiza a tela de login do usuário",
         "responses": {
@@ -111,6 +125,9 @@
         }
       },
       "post": {
+        "tags": [
+            "Users"
+        ],
         "summary": "Login de usuário",
         "description": "Autentica um usuário existente e cria uma sessão",
         "requestBody": {

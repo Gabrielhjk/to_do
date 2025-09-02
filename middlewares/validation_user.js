@@ -14,7 +14,7 @@ function validationUser(Schema) {
                 error.details.map(errorObject => errorObject.message).toString()
             )
 
-            err.statusCode = 422
+            err.statusCode = 400
             next(err)
 
         } catch (err) {

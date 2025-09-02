@@ -13,6 +13,7 @@ const app = express()
 // pegando as rotas 
 const routerUser = require('./routes/routerUser')
 const routerTask = require('./routes/routerTask')
+const { message } = require('./schemas/taskSchema')
 
 // pegando corpo da requisicao 
 app.use(express.urlencoded({
@@ -42,12 +43,21 @@ app.use(session({
     }
 })) 
 
+
 // documentacao swagger 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
 app.use('/users', routerUser)
 app.use('/tasks', routerTask)
 
+
+// middleware para tratar erros
+app.use((err, req, res, next) => {
+    const statusCode = err.statusCode || 400
+    res.status(statusCode).json({
+        message: err.message || 'Internal Server Error'
+    })
+})
 
 
 db.sync().then(() => {
