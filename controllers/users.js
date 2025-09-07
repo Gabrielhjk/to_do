@@ -10,14 +10,7 @@ module.exports = class UsersController {
     static async postRegister(req, res, next) {
         try {
             // pega o input do corpo da requisicao 
-            const {name, email, password, confirm_password} = req.body
-            
-            // verifica se as senhas sao compativeis 
-            // if (confirm_password != password) {
-            //     const error = new Error('Invalid Passwords')
-            //     err.status = 404
-            //     throw error
-            // }
+            const {name, email, password} = req.body
             
             // busca o email do usuario no banco
             const checkUserExists = await User.findOne({where: {email: email}}) 
@@ -39,6 +32,7 @@ module.exports = class UsersController {
                 password: hashedPassword,
             }
 
+            // cria o user no banco 
             const newUser = await User.create(data)
             req.session.userId = newUser.id  
             

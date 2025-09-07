@@ -1,14 +1,13 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "User API",
-    "description": "API para registro e login de usuários",
+    "title": "Tasks API",
+    "description": "API para gerenciamento de tarefas",
     "version": "1.0.0"
   },
   "tags": [
-    {
-        "name": "Users"
-    }
+    { "name": "Users" },
+    { "name": "Tasks" }
   ],
   "paths": {
     "/users/register": {
@@ -200,6 +199,105 @@
           }
         }
       }
+    },
+    "/tasks": {
+      "get": {
+        "tags": ["Tasks"],
+        "summary": "Lista todas as tarefas do usuário logado",
+        "responses": {
+          "200": { "description": "Lista de tarefas retornada" },
+          "404": { "description": "Usuário não encontrado" }
+        }
+      },
+      "post": {
+        "tags": ["Tasks"],
+        "summary": "Cria uma nova tarefa",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["title", "description"],
+                "properties": {
+                  "title": { "type": "string", "example": "Estudar Node.js" },
+                  "description": { "type": "string", "example": "Ler documentação do Express" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Tarefa criada com sucesso" },
+          "400": { "description": "Título inválido" }
+        }
+      }
+    },
+    "/tasks/{id}": {
+      "get": {
+        "tags": ["Tasks"],
+        "summary": "Busca uma tarefa por ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "integer" }
+          }
+        ],
+        "responses": {
+          "200": { "description": "Tarefa encontrada" },
+          "404": { "description": "Tarefa não encontrada" }
+        }
+      },
+      "put": {
+        "tags": ["Tasks"],
+        "summary": "Atualiza uma tarefa existente",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "integer" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": { "type": "string", "example": "Estudar Sequelize" },
+                  "description": { "type": "string", "example": "Aprender associações de tabelas" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Tarefa atualizada" },
+          "400": { "description": "Título inválido" },
+          "404": { "description": "Tarefa não encontrada" }
+        }
+      },
+      "delete": {
+        "tags": ["Tasks"],
+        "summary": "Deleta uma tarefa por ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": { "type": "integer" }
+          }
+        ],
+        "responses": {
+          "200": { "description": "Tarefa deletada" },
+          "404": { "description": "Tarefa não encontrada" }
+        }
+      }
     }
   }
 }
+
