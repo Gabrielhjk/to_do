@@ -16,6 +16,10 @@ function validationUser(Schema) {
                 error.details.map(errorObject => errorObject.message).toString()
             )
 
+            if (!req.body.email && !req.body.password) {
+                return next(new AppError('Email and password are required', 400))
+            } 
+
             err.status = 400
             next(err)
 

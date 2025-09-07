@@ -66,7 +66,7 @@ module.exports = class UsersController {
 
             // verifica se ja existe algum usuario com o email cadastrado 
             if (!checkUserExists) {
-                return next(new AppError('User don`t Exists', 404))
+                return next(new AppError('User not Exists', 404))
             }
 
             // compara a senha criptografada no banco com a senha digitada pelo usuario 
