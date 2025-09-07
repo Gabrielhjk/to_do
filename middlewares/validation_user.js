@@ -1,3 +1,5 @@
+const AppError = require("../utils/AppError")
+
 function validationUser(Schema) {
     return (req, res, next) => {
 
@@ -14,7 +16,7 @@ function validationUser(Schema) {
                 error.details.map(errorObject => errorObject.message).toString()
             )
 
-            err.statusCode = 400
+            err.status = 400
             next(err)
 
         } catch (err) {
