@@ -2,8 +2,8 @@
 const Joi = require('@hapi/joi')
 
 const TaskSchema = Joi.object({
-    title: Joi.string().min(1).max(200).required(),
-    description: Joi.string().min(1).max(500).required()
+    title: Joi.string().min(1).required(),
+    description: Joi.string()
 })
 
-module.exports = TaskSchema
+module.exports = { TaskSchema }

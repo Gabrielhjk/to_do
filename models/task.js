@@ -5,9 +5,12 @@ const User = require('./User')
 
 const Task = db.define('Task', {
     title: {
-        type: DataTypes.STRING(200),
+        type: DataTypes.STRING(),
         require: true,
         allowNull: false
+    },
+    description: {
+        type: DataTypes.STRING(),
     }
 })
 

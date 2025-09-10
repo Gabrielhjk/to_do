@@ -14,7 +14,7 @@ function validationTask(Schema) {
                 error.details.map(errorObject => errorObject.message).toString()
             )
          
-            err.status = 422
+            err.status = 400
             next(err)
 
         } catch (err) {

@@ -1,5 +1,6 @@
 const Task = require('../models/Task')
 const User = require('../models/User')
+const AppError = require('../utils/AppError')
 
 module.exports = class tasksControllers {
     static getHome(req, res) {
@@ -26,6 +27,10 @@ module.exports = class tasksControllers {
         if (tasks.length === 0 ) {
             emptyTasks = true
         }
+
+        return res.status(200).json({
+            message: tasks
+        })
     }
 
     static async getTaskId(req, res) {
@@ -43,20 +48,23 @@ module.exports = class tasksControllers {
     }    
 
     static async postTask(req, res) {
-        const task = {
-            title: req.body.title,
-            description: req.body.description,
-            userId: req.session.userId
-        }
+        try {
+            const task = {
+                title: req.body.title,
+                description: req.body.description,
+                UserId: req.session.userId
+            }
+    
+            // cria a tarefa 
+            await Task.create(task) 
 
-        // verifica se o title tem menos de 1 letra 
-        if (!task.title) {
-            console.log('The title have more than one letter')
-            return
+            // retorna a confirmacao da task criada 
+            return res.status(201).json({
+                message: 'Created Task Successfully'
+            })
+        } catch (err) {
+            next(err)
         }
-
-        // cria a tarefa 
-        await Task.create(task) 
     }
 
     static getUpdateTask(req, res) {
@@ -64,48 +72,61 @@ module.exports = class tasksControllers {
     }
 
     static async updateTask(req, res){
-        const taskId = req.params.id
-        const userId = req.session.userId
-        const { title, description } = req.body
-
-        // checa se a task pertence ao user 
-        const checkTask = await Task.findOne({ where: {id: taskId, userId: userId}})
-
-        // caso nao pertenca 
-        if (!checkTask) {
-            console.log('Not exists')
-            return
-        }
-
-        // verifica se o title tem menos de 1 letra 
-        if (!title) {
-            console.log('The title have more than one letter')
-            return
-        }
-
         try {
+            const taskId = req.params.id
+            const userId = req.session.userId
+            const { title, description } = req.body
+    
+            // checa se a task pertence ao user 
+            const checkTask = await Task.findOne({ where: {id: taskId, userId: userId}})
+    
+            // caso nao pertenca 
+            if (!checkTask) {
+                console.log('Not exists')
+                return
+            }
+    
+            // verifica se o title tem menos de 1 letra 
+            if (!title) {
+                console.log('The title have more than one letter')
+                return
+            }
+
+            // atualiza os dados da task 
             await Task.update({ title, description }, { where: {id: taskId, userId: userId}})
-            console.log('Successfully updated')
+
+            // retorna a confirmacao da task atualizada
+            return res.status(200).json({
+                message: 'Updated Task Successfullu'
+            })
         } catch (err) {
-            console.log(err)
+            next(err)
         }
     }
 
     static async deleteTask(req, res) {
-        const userId = req.session.userId
-        const taskId = req.params.id
+        try {
+            const userId = req.session.userId
+            const taskId = req.params.id
+    
+            // encontra task associada ao id do user  
+            const task = Task.findOne({ where: {id: taskId, userId: userId}})
+    
+            // caso nao exista 
+            if (!task) {
+                console.log('Task not exists')
+                return
+            }
+    
+            // exclui a task 
+            await Task.destroy(task)
 
-        // encontra task associada ao id do user  
-        const task = Task.findOne({ where: {id: taskId, userId: userId}})
-
-        // caso nao exista 
-        if (!task) {
-            console.log('Task not exists')
-            return
+            return res.status(200).json({
+                message: 'Deleted Task Successfully'
+            })
+        } catch (err) {
+            next(err)
         }
-
-        // exclui a task 
-        await Task.destroy(task)
     }
 }
 

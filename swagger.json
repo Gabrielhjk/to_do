@@ -200,7 +200,7 @@
         }
       }
     },
-    "/tasks": {
+    "/tasks/create": {
       "get": {
         "tags": ["Tasks"],
         "summary": "Lista todas as tarefas do usuário logado",
