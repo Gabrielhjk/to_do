@@ -40,10 +40,12 @@ module.exports = class tasksControllers {
             // busca o id especifico da task associado ao id do user 
             const task = await Task.findOne({ where: {id: taskId, UserId: userId }})
     
+            // caso o id nao seja encontrado 
             if (!task) {
                 return next(new AppError('Task not exists', 404))
             }
     
+            // retorna a task especifica relacionada ao id
             return res.status(200).json({
                 message: task
             })
