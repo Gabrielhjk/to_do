@@ -12,9 +12,7 @@
   "paths": {
     "/users/register": {
       "get": {
-        "tags": [
-            "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Página de registro",
         "description": "Renderiza a tela de registro de usuário",
         "responses": {
@@ -24,9 +22,7 @@
         }
       },
       "post": {
-        "tags": [
-            "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Registrar um usuário",
         "description": "Cria um novo usuário no sistema",
         "requestBody": {
@@ -36,22 +32,10 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "name": {
-                    "type": "string",
-                    "example": "Francisco"
-                  },
-                  "email": {
-                    "type": "string",
-                    "example": "francisco@email.com"
-                  },
-                  "password": {
-                    "type": "string",
-                    "example": "12345678"
-                  },
-                  "confirm_password": {
-                    "type": "string",
-                    "example": "12345678"
-                  }
+                  "name": { "type": "string", "example": "Francisco" },
+                  "email": { "type": "string", "example": "francisco@email.com" },
+                  "password": { "type": "string", "example": "12345678" },
+                  "confirm_password": { "type": "string", "example": "12345678" }
                 },
                 "required": ["name", "email", "password", "confirm_password"]
               }
@@ -59,74 +43,24 @@
           }
         },
         "responses": {
-          "201": {
-            "description": "Usuário criado com sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": { "type": "integer", "example": 1 },
-                    "name": { "type": "string", "example": "Francisco" },
-                    "email": { "type": "string", "example": "francisco@email.com" }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Erro de validação",
-            "content": {
-              "application/json": {
-                "examples": {
-                  "passwordMismatch": {
-                    "summary": "Senhas diferentes",
-                    "value": { "error": "Password invalid" }
-                  },
-                  "missingFields": {
-                    "summary": "Campos obrigatórios ausentes",
-                    "value": { "error": "All fields are required" }
-                  }
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Usuário já existe",
-            "content": {
-              "application/json": {
-                "example": { "error": "User already exists" }
-              }
-            }
-          },
-          "500": {
-            "description": "Erro interno do servidor",
-            "content": {
-              "application/json": {
-                "example": { "error": "Internal server error" }
-              }
-            }
-          }
+          "201": { "description": "Usuário criado com sucesso" },
+          "400": { "description": "Erro de validação" },
+          "409": { "description": "Usuário já existe" },
+          "500": { "description": "Erro interno do servidor" }
         }
       }
     },
     "/users/login": {
       "get": {
-        "tags": [
-            "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Página de login",
         "description": "Renderiza a tela de login do usuário",
         "responses": {
-          "200": {
-            "description": "Tela de login retornada com sucesso"
-          }
+          "200": { "description": "Tela de login retornada com sucesso" }
         }
       },
       "post": {
-        "tags": [
-            "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Login de usuário",
         "description": "Autentica um usuário existente e cria uma sessão",
         "requestBody": {
@@ -136,14 +70,8 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "email": {
-                    "type": "string",
-                    "example": "francisco@email.com"
-                  },
-                  "password": {
-                    "type": "string",
-                    "example": "12345678"
-                  }
+                  "email": { "type": "string", "example": "francisco@email.com" },
+                  "password": { "type": "string", "example": "12345678" }
                 },
                 "required": ["email", "password"]
               }
@@ -151,56 +79,15 @@
           }
         },
         "responses": {
-          "200": {
-            "description": "Login realizado com sucesso",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "message": { "type": "string", "example": "Login successful" },
-                    "userId": { "type": "integer", "example": 1 }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Campos obrigatórios ausentes",
-            "content": {
-              "application/json": {
-                "example": { "error": "Email and password are required" }
-              }
-            }
-          },
-          "401": {
-            "description": "Credenciais inválidas",
-            "content": {
-              "application/json": {
-                "example": { "error": "Invalid password" }
-              }
-            }
-          },
-          "404": {
-            "description": "Usuário não encontrado",
-            "content": {
-              "application/json": {
-                "example": { "error": "User not exists" }
-              }
-            }
-          },
-          "500": {
-            "description": "Erro interno do servidor",
-            "content": {
-              "application/json": {
-                "example": { "error": "Internal server error" }
-              }
-            }
-          }
+          "200": { "description": "Login realizado com sucesso" },
+          "400": { "description": "Campos obrigatórios ausentes" },
+          "401": { "description": "Credenciais inválidas" },
+          "404": { "description": "Usuário não encontrado" },
+          "500": { "description": "Erro interno do servidor" }
         }
       }
     },
-    "/tasks/create": {
+    "/tasks/allTasks": {
       "get": {
         "tags": ["Tasks"],
         "summary": "Lista todas as tarefas do usuário logado",
@@ -208,58 +95,58 @@
           "200": { "description": "Lista de tarefas retornada" },
           "404": { "description": "Usuário não encontrado" }
         }
+      }
       },
-      "post": {
-        "tags": ["Tasks"],
-        "summary": "Cria uma nova tarefa",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": ["title", "description"],
-                "properties": {
-                  "title": { "type": "string", "example": "Estudar Node.js" },
-                  "description": { "type": "string", "example": "Ler documentação do Express" }
+      "/tasks/create": {
+        "post": {
+          "tags": ["Tasks"],
+          "summary": "Cria uma nova tarefa",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["title", "description"],
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "example": "Estudar Node.js"
+                    },
+                    "description": {
+                      "type": "string",
+                      "example": "Ler documentação do Express"
+                    }
+                  }
                 }
               }
             }
+          },
+          "responses": {
+            "201": { "description": "Tarefa criada com sucesso" },
+            "400": { "description": "Título inválido" }
           }
-        },
-        "responses": {
-          "201": { "description": "Tarefa criada com sucesso" },
-          "400": { "description": "Título inválido" }
         }
-      }
-    },
+      },     
     "/tasks/{id}": {
       "get": {
         "tags": ["Tasks"],
         "summary": "Busca uma tarefa por ID",
         "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "schema": { "type": "integer" }
-          }
+          { "in": "path", "name": "id", "required": true, "schema": { "type": "integer" } }
         ],
         "responses": {
           "200": { "description": "Tarefa encontrada" },
           "404": { "description": "Tarefa não encontrada" }
         }
-      },
+      }
+    },
+    "/tasks/update/{id}": {
       "put": {
         "tags": ["Tasks"],
         "summary": "Atualiza uma tarefa existente",
         "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "schema": { "type": "integer" }
-          }
+          { "in": "path", "name": "id", "required": true, "schema": { "type": "integer" } }
         ],
         "requestBody": {
           "required": true,
@@ -280,17 +167,14 @@
           "400": { "description": "Título inválido" },
           "404": { "description": "Tarefa não encontrada" }
         }
-      },
+      }
+    },
+    "/tasks/delete/{id}": {
       "delete": {
         "tags": ["Tasks"],
         "summary": "Deleta uma tarefa por ID",
         "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "schema": { "type": "integer" }
-          }
+          { "in": "path", "name": "id", "required": true, "schema": { "type": "integer" } }
         ],
         "responses": {
           "200": { "description": "Tarefa deletada" },
@@ -300,4 +184,3 @@
     }
   }
 }
-

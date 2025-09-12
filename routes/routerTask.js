@@ -12,6 +12,6 @@ router.get('/create', auth, controllers.getCreateTask)
 router.post('/create', auth, validate(TaskSchema), controllers.postTask)
 router.get('/update/:id', auth, controllers.getUpdateTask)
 router.put('/update/:id', auth, validate(TaskSchema), controllers.updateTask)
-router.delete('/remove/:id', auth, controllers.deleteTask)
+router.delete('/delete/:id', auth, controllers.deleteTask)
 
 module.exports = router
