@@ -32,12 +32,24 @@ module.exports = class tasksControllers {
         })
     }
 
-    static async getTaskId(req, res) {
-        const taskId = req.params.id
-        const userId = req.session.useId 
-
-        // busca o id especifico da task associado ao id do user 
-        const task = await Task.findOne({ where: {id: taskId, UserId: userId }})
+    static async getTaskId(req, res, next) {
+        try {
+            const taskId = req.params.id
+            const userId = req.session.userId 
+    
+            // busca o id especifico da task associado ao id do user 
+            const task = await Task.findOne({ where: {id: taskId, UserId: userId }})
+    
+            if (!task) {
+                return next(new AppError('Task not exists', 404))
+            }
+    
+            return res.status(200).json({
+                message: task
+            })
+        } catch (err) {
+            next(err)
+        }
 
         // retornar tela da tarefa com o id especifico 
     }
