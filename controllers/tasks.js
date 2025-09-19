@@ -73,7 +73,7 @@ module.exports = class tasksControllers {
 
             // retorna a confirmacao da task criada 
             return res.status(201).json({
-                message: 'Created Task Successfully'
+                message: 'Task Created Successfully'
             })
         } catch (err) {
             next(err)
@@ -109,7 +109,7 @@ module.exports = class tasksControllers {
 
             // retorna a confirmacao da task atualizada
             return res.status(200).json({
-                message: 'Updated Task Successfully'
+                message: 'Task Update Successfully'
             })
         } catch (err) {
             next(err)
@@ -133,7 +133,7 @@ module.exports = class tasksControllers {
             await Task.destroy({ where: {id: userId, UserId: userId}})
 
             return res.status(200).json({
-                message: 'Deleted Task Successfully'
+                message: 'Task Deleted Successfully'
             })
         } catch (err) {
             next(err)
