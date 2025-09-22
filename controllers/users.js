@@ -1,6 +1,7 @@
 const User = require('../models/User')
 const bcrpyt = require('bcryptjs')
 const AppError = require('../utils/AppError')
+const generateAccessToken = require('../utils/token')
 
 module.exports = class UsersController {
     static getRegister(req, res) {
@@ -71,11 +72,13 @@ module.exports = class UsersController {
                 return next(new AppError('Invalid Passwords', 404))
             }
 
+            const token = generateAccessToken(checkUserExists?.name)
             req.session.userId = checkUserExists.id
 
             // retorna a confirmacao de login do user
             res.status(200).json({
-                message: 'Login Successful'
+                message: 'Login Successful',
+                token: `Bearer ${token}`
             })
     } catch(err) {
         next(err)
