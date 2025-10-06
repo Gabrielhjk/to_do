@@ -130,7 +130,7 @@ module.exports = class tasksControllers {
             }
     
             // exclui a task 
-            await Task.destroy({ where: {id: userId, UserId: userId}})
+            await Task.destroy({ where: {id: taskId, UserId: userId}})
 
             return res.status(200).json({
                 message: 'Task Deleted Successfully'
