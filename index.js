@@ -54,9 +54,10 @@ app.use('/tasks', routerTask)
 app.use(errorHandler)
 
 
-db.sync().then(() => {
-    app.listen(port),
-    console.log(`The server is running on http://localhost:${port}/api-docs`)
-}).catch((err) => console.log(err))
+// db.sync().then(() => {
+//     app.listen(port),
+//     console.log(`The server is running on http://localhost:${port}/api-docs`)
+// }).catch((err) => console.log(err))
 
 
+module.exports = app
