@@ -20,7 +20,7 @@ module.exports = class UsersController {
             if (checkUserExists) {
                 return next(new AppError('User Already Exists', 200))
             }
-            
+
             // gera valores aleatorios com o cost factor com o valor de 10 
             const salt = bcrpyt.genSaltSync(10)
             // pega a senha enviada pelo o usuario e faz um hash 

@@ -53,11 +53,11 @@ app.use('/tasks', routerTask)
 // middleware de tratamento de erro
 app.use(errorHandler)
 
-
-// db.sync().then(() => {
-//     app.listen(port),
-//     console.log(`The server is running on http://localhost:${port}/api-docs`)
-// }).catch((err) => console.log(err))
-
+if (process.env.NODE_ENV !== 'test') {
+    db.sync().then(() => {
+        app.listen(port),
+        console.log(`The server is running on http://localhost:${port}/api-docs`)
+    }).catch((err) => console.log(err))
+}
 
 module.exports = app

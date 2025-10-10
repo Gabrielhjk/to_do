@@ -7,12 +7,6 @@ function validation_token(req, res, next) {
     // se nao for undefined ou null ele ignora o index 0 (Bearer) e pega so oque esta no index 1, o token
     const token = authHeader && authHeader.split(' ')[1]
 
-    console.log('token:', token)
-    console.log('secret: ', process.env.TOKEN_SECRET)
-    console.log('Headers recebidos:', req.headers)
-    console.log('Auth header:', req.headers['authorization'])
-
-
     // se for undefined ou null retorna erro 
     if (token == null) return next(new AppError('Invalid or Expired Token', 401))
 
