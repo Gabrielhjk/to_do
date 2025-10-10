@@ -2,22 +2,6 @@ const request = require('supertest')
 const app = require('../index')
 const sequelize = require('../db/db')
 
-// jest.mock('../index', () => ({
-//     connect: jest.fn(),
-//     get: jest.fn(),
-//     set: jest.fn()
-// }));
-
-// jest.mock('../models/User', () => ({
-//     findOne: jest.fn(),
-//     create: jest.fn()
-// }))
-
-// jest.mock('../models/Task', () => ({
-//     findOne: jest.fn(),
-//     create: jest.fn()
-// }))
-
 const AUTH_ROUTE = '/users/register'
 
 describe('Users Error', () => {
