@@ -1,7 +1,5 @@
-jest.mock('../mocks/models/User_mock')
 const request = require('supertest')
 const app = require('../index')
-const sequelize = require('../db/db')
 
 const ROUTER_REGISTER = '/users/register'
 const ROUTER_LOGIN = '/users/login'
@@ -10,7 +8,7 @@ const ROUTER_LOGIN = '/users/login'
 describe('Users Error', () => {
     test('Name is not Allowed Empyt', async () => {
         const res = await request(app).post(ROUTER_REGISTER).send({name: '', email: 'francisco@email.com', password: '123456789', confirm_password: '123456789'})
-        expect(res.status).toBe(400),
+        expect(res.status).toBe(400)
         expect(res.body.message).toBe('\"name\" is not allowed to be empty')
     })
 
@@ -28,7 +26,7 @@ describe('Users Error', () => {
 
     test('Email is not Allowed Empty', async () => {
         const res = await request(app).post(ROUTER_REGISTER).send({name: 'Francisco', email: '', password: '12345678', confirm_password: '12345678'})
-        expect(res.status).toBe(400),
+        expect(res.status).toBe(400)
         expect(res.body.message).toBe('\"email\" is not allowed to be empty')
     })
 
@@ -40,19 +38,19 @@ describe('Users Error', () => {
 
     test('Password Length less than 8 characters', async () => {
         const res = await request(app).post(ROUTER_REGISTER).send({name: 'Francisco', email: 'francisco@email.com', password: '123456', confirm_password: '123456'})
-        expect(res.status).toBe(400),
+        expect(res.status).toBe(400)
         expect(res.body.message).toBe('\"password\" length must be at least 8 characters long')
     })
 
     test('Passoword is not Allowed Empty', async () => {
         const res = await request(app).post(ROUTER_REGISTER).send({name: 'Francisco', email: 'francisco@email.com', password: '', confirm_password: ''})
-        expect(res.status).toBe(400),
+        expect(res.status).toBe(400)
         expect(res.body.message).toBe('\"password\" is not allowed to be empty')
     })
 
     test('Invalid Password', async () => {
         const res = await request(app).post(ROUTER_REGISTER).send({name: 'Francisco', email: 'francisco@email.com', password: '123456789', confirm_password: '123456788'})
-        expect(res.status).toBe(400),
+        expect(res.status).toBe(400)
         expect(res.body.message).toBe('Invalid Password')
     })
 
@@ -65,8 +63,4 @@ describe('Users Error', () => {
         expect(res.status).toBe(404)
         expect(res.body.message).toBe('User not Exists')
     })
-})
-
-afterAll(() => {
-    sequelize.close()
 })

@@ -5,11 +5,11 @@ const sequelize = new Sequelize('to_do', 'postgres', '1234', {
     dialect: 'postgres'    
 })
 
-try {
-    sequelize.authenticate()
-    console.log('Database connected successfully')
-} catch (err) {
-    console.log(err)
-}
+// try {
+//     sequelize.authenticate()
+//     console.log('Database connected successfully')
+// } catch (err) {
+//     console.log(err)
+// }
 
 module.exports = sequelize
