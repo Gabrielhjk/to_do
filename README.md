@@ -81,10 +81,10 @@ Siga os passos abaixo para clonar e iniciar a aplicação
 
 - 2. Configurar Variáveis de Ambiente
 Crie um arquivo chamado .env na raiz do projeto e preencha com essas informações ou as suas 
-// Ambiente
+```
+# Ambiente
 NODE_ENV = 'development'
 PORT = 3000
-
 // Chave de segurança para sessões/tokens
 // Use o comando 'node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"' no terminal para gerar um token aleatório
 TOKEN_SECRET = SEU_TOKEN_SECRETO_AQUI 
@@ -98,6 +98,7 @@ POSTGRES_PASSWORD = 1234
 # Configurações do Redis
 REDIS_HOST = redis
 REDIS_PORT = 6379 
+```
 
 - 3. Subir os Containers
 Utilize o Docker Compose para construir as imagens e iniciar todos os serviços (Backend, PostgreSQL e Redis)
