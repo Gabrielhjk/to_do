@@ -1,15 +1,15 @@
-🚀 To-Do List API
+# 🚀 To-Do List API
 
 Uma API RESTful para gerenciamento de listas de tarefas (To-Do List), desenvolvida com Node.js e orquestrada com Docker para um ambiente de desenvolvimento isolado e eficiente. Utiliza PostgreSQL para persistência de dados e Redis para gerenciamento de sessões.
 
-🌟 Funcionalidades Principais 
+# 🌟 Funcionalidades Principais 
 - Autenticação: Login e Logout de usuários (via express-session com Redis).
 - Gestão de Usuários: Cadastro, listagem e exclusão.
 - Gestão de Tarefas (Tasks): Criação, leitura (listagem), atualização e exclusão de tarefas.
 - Segurança: Utilização de TOKEN_SECRET e autenticação via sessão.
 - Documentação: Swagger UI integrada para testar todos os endpoints.
 
-🛠️ Tecnologias Utilizadas
+# 🛠️ Tecnologias Utilizadas
 O projeto é construído sobre o ecossistema Node.js e gerenciado com containers Docker.
 - Backend: Node.js, Express
 - Segurança: JWT
@@ -20,7 +20,7 @@ O projeto é construído sobre o ecossistema Node.js e gerenciado com containers
 - Ambiente: Docker & Docker Compose
 - Documentação das Apis: Swagger
 
-📂 Estrutua do Projeto
+# 📂 Estrutua do Projeto
 ```
 to_do/
 ├── controllers/
@@ -67,13 +67,13 @@ to_do/
 └── swagger.json            # Definição dos endpoints para o Swagger UI
 ```
 
-📦 Pré-Requisitos
+# 📦 Pré-Requisitos
 Você precisa ter instalado na sua máquina:
 - Node.js
 - Git: Para clonar o repositório.
 - Docker & Docker Compose: Para subir o ambiente de desenvolvimento completo.
 
-⚙️ Configuração do Ambiente
+# ⚙️ Configuração do Ambiente
 Siga os passos abaixo para clonar e iniciar a aplicação
 - 1. Clonar o Repositório
      ```
@@ -114,7 +114,7 @@ Aguarde alguns segundos até que o container do api_backend esteja totalmente pr
 - URL de Acesso as APIs via Swagger http://localhost:3000/api-docs
 Lá você encontrará a lista de todos os endpoints e poderá testá-los diretamente
 
-📝 Documentação da API (Swagger API)
+# 📝 Documentação da API (Swagger API)
 Endpoints Principais
 - POST /users/register: Cadastro de novo usuário
 - POST /users/login: Login e criação de sessão
