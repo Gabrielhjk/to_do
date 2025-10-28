@@ -59,7 +59,7 @@ describe('Users Error', () => {
 // testes na rota de login
 describe('Users Error', () => {
     test('User not Exists', async () => {
-        const res = await request(app).post(ROUTER_LOGIN).send({email: 'franciisco@email.com', password: '12345678'})
+        const res = await request(app).post(ROUTER_LOGIN).send({email: 'franciisco@gmail.com', password: '12345678'})
         expect(res.status).toBe(404)
         expect(res.body.message).toBe('User not Exists')
     })

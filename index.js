@@ -25,7 +25,9 @@ app.use(express.json())
 
 
 // configuracao redis / serve para armazenar as sessoes
-const redisClient = createClient()
+const redisClient = createClient({
+    url: `redis://${process.env.REDIS_HOST}:${process.env.REDIS_PORT}`
+})
 redisClient.connect().catch(console.error)
 
 
