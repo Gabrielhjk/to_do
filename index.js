@@ -7,7 +7,6 @@ const swaggerDocument = require('./swagger.json')
 const db = require('./db/db')
 const { RedisStore } = require('connect-redis')
 const { createClient } = require('redis')
-const port = process.env.PORT 
 
 const app = express()
 
@@ -26,6 +25,7 @@ app.use(express.json())
 
 // configuracao redis / serve para armazenar as sessoes
 const redisClient = createClient({
+    // mudando a url padrao
     url: `redis://${process.env.REDIS_HOST}:${process.env.REDIS_PORT}`
 })
 redisClient.connect().catch(console.error)
@@ -57,8 +57,8 @@ app.use(errorHandler)
 
 if (process.env.NODE_ENV !== 'test') {
     db.sync().then(() => {
-        app.listen(port),
-        console.log(`The server is running on http://localhost:${port}/api-docs`)
+        app.listen(process.env.PORT),
+        console.log(`The server is running on http://localhost:${process.env.PORT}/api-docs`)
     }).catch((err) => console.log(err))
 }
 

@@ -22,11 +22,6 @@ module.exports = class tasksControllers {
         // itera sobre sobre todas as tasks 
         const tasks = await user.Tasks.map((task) => task.dataValues)
 
-        // verifica se nao tem task adicionada 
-        // if (tasks.length === 0 ) {
-        //     emptyTasks = true
-        // }
-
         return res.status(200).json({
             message: tasks
         })
@@ -97,12 +92,6 @@ module.exports = class tasksControllers {
             if (!checkTask) {
                 return next(new AppError('This Task doesn`t Belong to this User', 404))                
             }
-    
-            // verifica se o title tem menos de 1 letra 
-            // if (!title) {
-            //     console.log('The title have more than one letter')
-            //     return
-            // }
 
             // atualiza os dados da task 
             await Task.update({ title, description }, { where: {id: taskId, UserId: userId}})
