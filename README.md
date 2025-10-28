@@ -76,7 +76,10 @@ Você precisa ter instalado na sua máquina:
 ⚙️ Configuração do Ambiente
 Siga os passos abaixo para clonar e iniciar a aplicação
 - 1. Clonar o Repositório
-     - (No terminal coloque) git clone https://github.com/Gabrielhjk/to_do.git
+     ```
+     # No terminal coloque
+     git clone https://github.com/Gabrielhjk/to_do.git
+     ```
      - cd to_do
 
 - 2. Configurar Variáveis de Ambiente
@@ -102,7 +105,9 @@ REDIS_PORT = 6379
 
 - 3. Subir os Containers
 Utilize o Docker Compose para construir as imagens e iniciar todos os serviços (Backend, PostgreSQL e Redis)
+```
 docker-compose up --build -d (O comando -d executa os containers em segundo plano)
+```
 
 - 4. Acessar a Aplicação
 Aguarde alguns segundos até que o container do api_backend esteja totalmente pronto
