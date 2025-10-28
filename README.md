@@ -1,4 +1,5 @@
 🚀 To-Do List API
+
 Uma API RESTful para gerenciamento de listas de tarefas (To-Do List), desenvolvida com Node.js e orquestrada com Docker para um ambiente de desenvolvimento isolado e eficiente. Utiliza PostgreSQL para persistência de dados e Redis para gerenciamento de sessões.
 
 🌟 Funcionalidades Principais 
@@ -119,5 +120,3 @@ Endpoints Principais
 <p align="center">
 A estruturação, formatação e o conteúdo deste arquivo <code>README.md</code> foram elaborados com o auxílio da inteligência artificial <strong>Gemini</strong> 
 </p>
----
-  
