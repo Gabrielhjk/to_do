@@ -85,8 +85,8 @@ Crie um arquivo chamado .env na raiz do projeto e preencha com essas informaçõ
 # Ambiente
 NODE_ENV = 'development'
 PORT = 3000
-// Chave de segurança para sessões/tokens
-// Use o comando 'node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"' no terminal para gerar um token aleatório
+# Chave de segurança para sessões/tokens
+# Use o comando 'node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"' no terminal para gerar um token aleatório
 TOKEN_SECRET = SEU_TOKEN_SECRETO_AQUI 
 
 # Configurações do PostgreSQL
