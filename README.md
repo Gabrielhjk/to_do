@@ -111,8 +111,7 @@ docker-compose up --build -d (O comando -d executa os containers em segundo plan
 
 - 4. Acessar a Aplicação
 Aguarde alguns segundos até que o container do api_backend esteja totalmente pronto
-- URL de Acesso as APIs via Swagger http://localhost:3000/api-docs
-Lá você encontrará a lista de todos os endpoints e poderá testá-los diretamente
+- Aqui está a URL de Acesso as APIs via Swagger http://localhost:3000/api-docs. Lá você encontrará a lista de todos os endpoints e poderá testá-los diretamente
 
 # 📝 Documentação da API (Swagger API)
 Endpoints Principais
