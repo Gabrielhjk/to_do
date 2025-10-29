@@ -32,38 +32,38 @@ to_do/
 │   ├── auth.js             # Middleware de autenticação (verifica sessão/token)
 │   ├── errorHandler.js     # Middleware de tratamento de erros global
 │   ├── validation_task.js  # Validação de dados para tarefas
-│   ├── validation_token.js # Validação de token/expiração (se for JWT)
+│   ├── validation_token.js # Validação de token/expiração
 │   └── validation_user.js  # Validação de dados para usuários
 ├── models/
 │   ├── Task.js             # Modelo Sequelize para a tabela de tarefas
 │   └── User.js             # Modelo Sequelize para a tabela de usuários
-├── node_modules/           # Dependências instaladas (ignorada pelo Git/Docker)
-├── public/                 # Arquivos estáticos (se houver)
+├── node_modules/           # Dependências instaladas
+├── public/                 # Arquivos estáticos
 ├── routes/
-│   ├── routerTask.js       # Rotas específicas para tarefas
-│   └── routerUser.js       # Rotas específicas para usuários (login, registro)
+│   ├── routerTask.js       # Rotas das tarefas
+│   └── routerUser.js       # Rotas dos usuários 
 ├── schemas/
-│   ├── taskSchema.js       # Schemas de validação para tarefas (ex: Joi)
-│   └── userSchema.js       # Schemas de validação para usuários (ex: Joi)
-├── sessions/               # Armazenamento de sessões (se não for no Redis)
+│   ├── taskSchema.js       # Schemas de validação para tarefas
+│   └── userSchema.js       # Schemas de validação para usuários
+├── sessions/               # Armazenamento de sessões
 ├── tests/
 │   ├── tasks.test.js       # Testes unitários/integração para tarefas
 │   └── users.test.js       # Testes unitários/integração para usuários
 ├── utils/
 │   ├── AppError.js         # Classe de erro customizada
-│   └── token.js            # Funções utilitárias para geração/verificação de tokens (JWT)
-├── views/                  # Arquivos de visualização (se houver)
+│   └── token.js            # Funções utilitárias para geração/verificação de tokens
+├── views/                  # Arquivos de visualização
 │   └── layouts/            # Layouts de visualização
 ├── .dockerignore           # Arquivos a serem ignorados ao construir a imagem Docker
 ├── .env                    # Variáveis de ambiente da aplicação
 ├── .env.test               # Variáveis de ambiente para testes
 ├── .gitignore              # Arquivos a serem ignorados pelo Git
-├── docker-compose.yml      # Orquestração de serviços (Node.js, Postgres, Redis)
-├── Dockerfile              # Definição da imagem Docker do backend
-├── index.js                # Ponto de entrada da aplicação (Express config, middlewares, rotas)
+├── docker-compose.yml      # Orquestração de serviços 
+├── Dockerfile              # Definição da imagem Docker
+├── index.js                # Ponto de entrada da aplicação 
 ├── package-lock.json       # Estado exato das dependências
 ├── package.json            # Metadados do projeto e scripts
-├── README.md               # Documentação do projeto (o que acabamos de criar)
+├── README.md               # Documentação do projeto
 └── swagger.json            # Definição dos endpoints para o Swagger UI
 ```
 
