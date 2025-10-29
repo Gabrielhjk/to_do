@@ -106,7 +106,8 @@ REDIS_PORT = 6379
 - 3. Subir os Containers
 Utilize o Docker Compose para construir as imagens e iniciar todos os serviços (Backend, PostgreSQL e Redis)
 ```
-docker-compose up --build -d (O comando -d executa os containers em segundo plano)
+# o comando -d executa os containers em segundo plano
+docker-compose up --build -d 
 ```
 
 - 4. Acessar a Aplicação
